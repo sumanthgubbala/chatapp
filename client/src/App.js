@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,createContext} from 'react'
 
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
 
@@ -9,19 +9,24 @@ import Login from './login'
 import MyProfile from './Myprofie';
 
 
+
+export const store =createContext();
+
 const App = () => {
+  const [token, setToken] = useState(null);
+
   return (
     <div>
+    <store.Provider value={[token,setToken]}>
     <BrowserRouter>
-      <Nav>
+      <Nav />
       <Routes>
             <Route path='/register' Component={Register} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/myprofile' element={<MyProfile />} />
+            <Route path='/login' Component={Login} />
+            <Route path='/myprofile' Component={MyProfile} />
       </Routes>
-
-      </Nav>
     </BrowserRouter>
+    </store.Provider>
 
     </div>
   )

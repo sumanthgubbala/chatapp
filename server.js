@@ -1,12 +1,9 @@
 const express =require('express');
 const mongoose =require('mongoose');
-
 const Registeruser = require('./model');
-
+const Msgmodel =require('./Msgmodel');
 const jwt =require('jsonwebtoken');
-
 const middleware =require('./middleware');
-
 const cors =require('cors');
 
 
@@ -102,3 +99,37 @@ app.get('/myprofile',middleware,async(req,res)=>{
 app.listen(5000,()=>{
     console.log('listening on port');
 })
+
+
+app.post('/addmsg',middleware,async(req,res)=>{
+    try{
+        const{text} =req.body;
+        const exist = await Registeruser.findById(req.user.id);
+        let newmsg= new Msgmodel({
+            user : req.user.id,
+            username : exist.username,
+            text:text
+        })
+
+        await newmsg.save();
+        let allmsg =await Msgmodel.find();
+        return res.json(allmsg)
+
+
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
+app.get('/getmsg',middleware,async(req,res)=>{
+    try{
+
+        let allmsg =await Msgmodel.find();
+        return res.json(allmsg)
+    }
+    catch(err){
+        console.log(err);
+    }
+
+});

@@ -11,24 +11,25 @@ const Register = () => {
         confirmpassword:''
     });
 const changehandler = e =>{
-    setData({...data,[e.target.name]:e.target.value})
-}
-const submitHandler = e =>{
+    setData({ ...data, [e.target.name]: e.target.value });
+};
+const submitHandler = (e) =>{
     e.preventDefault();
-    axios.post('http://localhost:5000/register',data).then(
-        res=> alert(res.data)
-    )
+    axios.post('http://localhost:5000/register', data)
+            .then((res) => {
+                alert(res.data);
+            })
 }
   return (
     <div>
     <center>
         <form  onSubmit={submitHandler}>
-            <label>Username:</label>
-            <input type="text"  onChange={changehandler} name="username" placeholder='username'/> <br/>
-            <input type="email" onChange={changehandler}  name="email" placeholder='email'/> <br/>
-            <input type="password" onChange={changehandler}  name="password" placeholder='password'/> <br/>
-            <input type="password" onChange={changehandler}  name="confirmpassword" placeholder='confirmpassword'/> <br/>
-            <input type="submit"  value="Register"/>
+            <h1>Register</h1>
+            <input type="text" onChange={changehandler} name="username" placeholder='Username' required /> <br />
+                    <input type="email" onChange={changehandler} name="email" placeholder='Email' required /> <br />
+                    <input type="password" onChange={changehandler} name="password" placeholder='Password' required /> <br />
+                    <input type="password" onChange={changehandler} name="confirmPassword" placeholder='Confirm Password' required /> <br />
+                    <input type="submit" value="Register" />
 
         </form>
     </center>

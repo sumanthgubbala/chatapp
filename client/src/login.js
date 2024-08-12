@@ -3,6 +3,9 @@ import axios from 'axios';
 import { store } from './App';
 import { Navigate } from 'react-router';
 
+import './login.css';
+
+
 
 
 const Login = () => {

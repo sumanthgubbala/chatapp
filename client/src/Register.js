@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import axios from 'axios';
 
+import './login.css';
+
 
 
 const Register = () => {
@@ -25,7 +27,7 @@ const submitHandler = (e) =>{
     <center>
         <form  onSubmit={submitHandler}>
             <h1>Register</h1>
-            <input type="text" onChange={changehandler} name="username" placeholder='Username' required /> <br />
+                    <input type="text" onChange={changehandler} name="username" placeholder='Username' required /> <br /> <br/>
                     <input type="email" onChange={changehandler} name="email" placeholder='Email' required /> <br />
                     <input type="password" onChange={changehandler} name="password" placeholder='Password' required /> <br />
                     <input type="password" onChange={changehandler} name="confirmPassword" placeholder='Confirm Password' required /> <br />
